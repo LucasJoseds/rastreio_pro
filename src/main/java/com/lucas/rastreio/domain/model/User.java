@@ -1,21 +1,23 @@
 package com.lucas.rastreio.domain.model;
 
-import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+
+import com.lucas.rastreio.domain.dto.UserDTO;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
-
     private String name;
 
     private String lastName;
@@ -26,6 +28,15 @@ public class User {
 
     public User(){
         
+    }
+
+    public User(UserDTO dto){
+
+        this.id = dto.getId();
+        this.name =dto.getName();
+        this.lastName= dto.getLastName();
+        this.cpf=dto.getCpf();
+        this.senha=dto.getSenha();
     }
 
     public Long getId() {
