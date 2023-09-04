@@ -18,8 +18,7 @@ public class Package {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    private String codigo;
+    private String code;
 
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -32,7 +31,7 @@ public class Package {
 
 
 
-    
+
     public Long getId() {
         return id;
     }
@@ -41,12 +40,12 @@ public class Package {
         this.id = id;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCode() {
+        return code;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public User getUser() {
