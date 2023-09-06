@@ -21,6 +21,11 @@ public class Client {
 
     private String cpf;
 
+
+    public Client(){
+        
+    }
+    
     public Client(PackageDTO dto) {
         this.id = dto.getId();
         this.name = dto.getClientName();

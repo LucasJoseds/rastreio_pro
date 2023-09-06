@@ -1,6 +1,7 @@
 package com.lucas.rastreio.domain.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -31,12 +33,18 @@ public class Package {
 
     private LocalDate finalDate;
 
-    public Package(PackageDTO dto , Client client){
+  
+    public Package(){
+        
+    }
+
+    public Package(PackageDTO dto , Client client ){
         this.id=dto.getId();
         this.code=dto.getCode();
         this.initDate=dto.getInitDate();
         this.finalDate=dto.getFinalDate();
         this.client = client;
+   
         
     }
 
@@ -81,6 +89,7 @@ public class Package {
         this.client = client;
     }
 
-   
+ 
+
 
 }
