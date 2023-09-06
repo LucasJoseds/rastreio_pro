@@ -6,7 +6,8 @@ public class PackageDTO {
     
     private Long id; 
     private String code; 
-    private Long user;
+    private String clientName;
+    private String clientCpf;
     private LocalDate initDate; 
     private LocalDate finalDate;
 
@@ -23,12 +24,7 @@ public class PackageDTO {
     public void setCode(String code) {
         this.code = code;
     }
-    public Long getUser() {
-        return user;
-    }
-    public void setUser(Long user) {
-        this.user = user;
-    }
+    
     public LocalDate getInitDate() {
         return initDate;
     }
@@ -41,7 +37,19 @@ public class PackageDTO {
     public void setFinalDate(LocalDate finalDate) {
         this.finalDate = finalDate;
     }
-
+    public String getClientName() {
+        return clientName;
+    }
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+    public String getClientCpf() {
+        return clientCpf;
+    }
+    public void setClientCpf(String clientCpf) {
+        this.clientCpf = clientCpf;
+    }
+    
 
     
 }
