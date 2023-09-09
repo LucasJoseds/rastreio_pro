@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.lucas.rastreio.domain.dto.DetailsResponseDTO;
 import com.lucas.rastreio.domain.model.Package;
 
 @Repository

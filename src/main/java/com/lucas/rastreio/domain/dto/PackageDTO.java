@@ -1,7 +1,7 @@
 package com.lucas.rastreio.domain.dto;
 
 import java.time.LocalDate;
-import java.util.List;
+
 
 public class PackageDTO {
     
@@ -11,8 +11,7 @@ public class PackageDTO {
     private String clientCpf;
     private LocalDate initDate; 
     private LocalDate finalDate;
-    private String situation;
-    private LocalDate dateAction;
+
 
     public Long getId() {
         return id;
@@ -51,21 +50,7 @@ public class PackageDTO {
     public void setClientCpf(String clientCpf) {
         this.clientCpf = clientCpf;
     }
-    public String getSituation() {
-        return situation;
-    }
-    public void setSituation(String situation) {
-        this.situation = situation;
-    }
-    public LocalDate getDateAction() {
-        return dateAction;
-    }
-    public void setDateAction(LocalDate dateAction) {
-        this.dateAction = dateAction;
-    }
-    
-    
-    
   
+    
     
 }

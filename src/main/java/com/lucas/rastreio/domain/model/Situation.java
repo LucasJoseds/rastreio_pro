@@ -34,7 +34,7 @@ public class Situation {
     }
 
     public Situation(PackageDTO dto , Package pack){
-        this.details=dto.getSituation();
+        this.details="Objeto postado";
         this.dateAction=LocalDate.now();
         this.pack=pack;
     }
@@ -68,7 +68,7 @@ public class Situation {
         this.pack = pack;
     }
 
-    
+ 
 
        
 }

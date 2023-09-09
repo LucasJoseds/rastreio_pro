@@ -9,7 +9,6 @@ public class ClientDTO {
     private String cpf;
 
 
-
     public Long getId() {
         return id;
     }

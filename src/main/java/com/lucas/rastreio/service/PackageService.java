@@ -1,6 +1,7 @@
 package com.lucas.rastreio.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,14 @@ public class PackageService {
     @Autowired
     private SituationRepository situationRepository;
 
+    private final String OBJ_POSTADO = "Objeto postado";
+
+    private final String TRANSITO = "Em trânsito para o destino";
+
+    private final String A_CAMINHO = "A caminho do destinatário";
+
+    private boolean continua =true;
+
     public Package create(PackageDTO dto) {
 
         Client nClient = new Client(dto);
@@ -46,20 +55,40 @@ public class PackageService {
     @Scheduled(cron = "0 * * * * *")
     public void updateSituation() {
 
-        List<Package> pacotes = packageRepository.findAll();
+       
+        Situation t = new Situation();
+        List<Situation> situations = new ArrayList<>();
+        Situation novaSituacao = new Situation();
 
-        for (Package pacote : pacotes) {
-            // Sua lógica para atualizar a situação do pacote aqui
-            Situation novaSituacao = new Situation();
-            novaSituacao.setDetails("Objeto postado");
-            novaSituacao.setDateAction(LocalDate.now());
+        if (continua) {
+            situations = situationRepository.findAll();
+            List<Package> pacotes = packageRepository.findAll();
+            System.out.println(situations.toString());
+            t = situations.get(situations.size() - 1);
+            for (Package pacote : pacotes) {
+                if (t.getDetails().equals(OBJ_POSTADO)) {
+                    situations = situationRepository.listDetails(OBJ_POSTADO);
+                    for (Situation situation : situations) {
+                        if (situation.getDetails().equals(OBJ_POSTADO)) {
+                            novaSituacao.setDetails(TRANSITO);
+                            novaSituacao.setDateAction(LocalDate.now());
+                        }
+                    }
+                }
+                if (t.getDetails().equals(TRANSITO)) {
+                    situations = situationRepository.listDetails(TRANSITO);
+                    for (Situation situation : situations) {
+                        if (situation.getDetails().equals(TRANSITO)) {
+                            novaSituacao.setDetails(A_CAMINHO);
+                            novaSituacao.setDateAction(LocalDate.now());
+                            continua=false;
+                        }
+                    }
+                }
+                novaSituacao.setPack(pacote);
+                situationRepository.save(novaSituacao);
+            }
 
-            // Associe a nova situação ao pacote
-            novaSituacao.setPack(pacote);
-
-            // Salve a nova situação no repositório de situação
-            situationRepository.save(novaSituacao);
         }
     }
-
 }
