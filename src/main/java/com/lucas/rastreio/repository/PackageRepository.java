@@ -7,13 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.lucas.rastreio.domain.dto.SituationResponseDTO;
 import com.lucas.rastreio.domain.model.Package;
+import com.lucas.rastreio.domain.model.Situation;
 
 @Repository
 public interface PackageRepository extends JpaRepository<Package,Long> {
 
 
 
-    @Query(nativeQuery = true, value = "select p.datails , c.name from packages p join clients c on p.client_id=c.id and p.code =:code")
-    List<Package> listDetails(@Param("code") String code);
+    @Query("select new com.lucas.rastreio.domain.dto.SituationResponseDTO(s.details,s.dateAction) from Situation s where s.pack.code =:code")
+    List<SituationResponseDTO> listPackages(@Param("code") String code);
 }

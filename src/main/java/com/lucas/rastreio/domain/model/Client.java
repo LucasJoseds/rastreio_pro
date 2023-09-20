@@ -27,10 +27,8 @@ public class Client {
     }
     
     public Client(PackageDTO dto) {
-        this.id = dto.getId();
         this.name = dto.getClientName();
         this.cpf = dto.getClientCpf();
-
     }
 
 

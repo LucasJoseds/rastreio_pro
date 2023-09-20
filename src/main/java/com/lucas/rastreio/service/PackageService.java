@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.lucas.rastreio.domain.dto.PackageDTO;
-
+import com.lucas.rastreio.domain.dto.response.SituationResponseDTO;
 import com.lucas.rastreio.domain.model.Client;
 import com.lucas.rastreio.domain.model.Package;
 import com.lucas.rastreio.domain.model.Situation;
@@ -35,7 +35,7 @@ public class PackageService {
 
     private final String A_CAMINHO = "A caminho do destinatário";
 
-    private boolean continua =true;
+    private boolean continua = true;
 
     public Package create(PackageDTO dto) {
 
@@ -55,7 +55,6 @@ public class PackageService {
     @Scheduled(cron = "0 * * * * *")
     public void updateSituation() {
 
-       
         Situation t = new Situation();
         List<Situation> situations = new ArrayList<>();
         Situation novaSituacao = new Situation();
@@ -81,14 +80,18 @@ public class PackageService {
                         if (situation.getDetails().equals(TRANSITO)) {
                             novaSituacao.setDetails(A_CAMINHO);
                             novaSituacao.setDateAction(LocalDate.now());
-                            continua=false;
+                            continua = false;
                         }
                     }
                 }
                 novaSituacao.setPack(pacote);
                 situationRepository.save(novaSituacao);
             }
-
         }
+    }
+
+    public List<SituationResponseDTO> returnDetails(String code){
+
+        return packageRepository.listPackages(code);
     }
 }
