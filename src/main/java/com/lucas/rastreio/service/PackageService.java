@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.lucas.rastreio.domain.dto.PackageDTO;
-import com.lucas.rastreio.domain.dto.response.SituationResponseDTO;
+import com.lucas.rastreio.domain.dto.SituationResponseDTO;
 import com.lucas.rastreio.domain.model.Client;
 import com.lucas.rastreio.domain.model.Package;
 import com.lucas.rastreio.domain.model.Situation;

@@ -1,4 +1,4 @@
-package com.lucas.rastreio.domain.dto.response;
+package com.lucas.rastreio.domain.dto;
 
 import java.time.LocalDate;
 
